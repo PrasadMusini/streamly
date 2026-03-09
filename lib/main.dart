@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:streamly_cresolinfoserv/features/videos/data/datasource/video_remote_datasource.dart';
@@ -8,13 +9,17 @@ import 'package:streamly_cresolinfoserv/features/videos/domain/usecases/get_vide
 import 'package:streamly_cresolinfoserv/features/videos/presentation/bloc/video_bloc.dart';
 import 'package:streamly_cresolinfoserv/navigation/app_router.dart';
 import 'package:streamly_cresolinfoserv/navigation/route_config.dart';
+import 'package:streamly_cresolinfoserv/notifications/notification_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // final fcmToken = await FirebaseMessaging.instance.getToken();
-  // print(fcmToken);
-  // await NotificationService.initLocalNotifications();
+
+  await Firebase.initializeApp();
+
+  await NotificationService.instance.init();
+
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+  print("fcmToken: $fcmToken");
 
   // Initialize GoRouterConfig once and reuse it
   final goRouterConfig = GoRouterConfig(initialRoute: Routes.screenHome.path);
