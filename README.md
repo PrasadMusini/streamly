@@ -6,8 +6,7 @@ Streamly is a modern, high-performance Flutter application designed for seamless
 
 Streamly follows a **Feature-Driven Clean Architecture** to ensure modularity, scalability, and maintainability. The codebase is organized by distinct features, making it highly decoupled and easy to navigate
 
-## Clean Architecture
-
+```text
 lib
 │   firebase_options.dart
 │   main.dart
@@ -18,7 +17,6 @@ lib
 │   │
 │   ├── error
 │   │       exceptions.dart
-│   │       failures.dart
 │   │
 │   ├── network
 │   │       api_service.dart
@@ -27,7 +25,6 @@ lib
 │   │       colors.dart
 │   │
 │   └── utils
-│           date_formatter.dart
 │
 ├── features
 │   ├── profile
@@ -70,6 +67,7 @@ lib
 │
 └── notifications
         notification_service.dart
+```
 
 This layer-by-layer separation of concerns allows the project to scale easily while keeping the UI, business logic, and data layers decoupled.
 
@@ -103,5 +101,7 @@ This layer-by-layer separation of concerns allows the project to scale easily wh
    flutter run
    ```
 
+
 ## Developer
+
 Developed by **Prasad Musini**.
