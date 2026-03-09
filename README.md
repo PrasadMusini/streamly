@@ -96,7 +96,8 @@ This layer-by-layer separation of concerns allows the project to scale easily wh
    flutter clean
    flutter pub get
    ```
-4. **Run the application:**
+4. **Run the application:**<img width="1419" height="2796" alt="mockup2-portrait" src="https://github.com/user-attachments/assets/c501a65b-375c-4ce6-b99c-7e8a4b8ab311" />
+
    ```bash
    flutter run
    ```
@@ -105,3 +106,4 @@ This layer-by-layer separation of concerns allows the project to scale easily wh
 ## Developer
 
 Developed by **Prasad Musini**.
+<img width="1857" height="3096" alt="mockup1-left" src="https://github.com/user-attachments/assets/7dbb465c-48fc-4f14-bea4-92e9b4d63d5a" />
