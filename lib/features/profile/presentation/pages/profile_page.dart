@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:streamly_cresolinfoserv/core/styles/colors.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -35,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
             /// Profile Avatar
             CircleAvatar(
               radius: 45,
-              backgroundColor: Colors.blue,
+              backgroundColor: AppColors.primary,
               child: const Text(
                 "P",
                 style: TextStyle(

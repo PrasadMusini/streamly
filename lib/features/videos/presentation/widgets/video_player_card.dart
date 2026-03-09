@@ -13,11 +13,32 @@ class VideoPlayerCard extends StatefulWidget {
   State<VideoPlayerCard> createState() => _VideoPlayerCardState();
 }
 
-class _VideoPlayerCardState extends State<VideoPlayerCard> {
+class _VideoPlayerCardState extends State<VideoPlayerCard>
+    with WidgetsBindingObserver {
   VideoPlayerController? videoPlayerController;
   ChewieController? chewieController;
 
   bool isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.detached) {
+      videoPlayerController?.pause();
+    } else if (state == AppLifecycleState.resumed) {
+      if (isPlaying) {
+        videoPlayerController?.play();
+      }
+    }
+  }
 
   void initializeVideo() async {
     videoPlayerController = VideoPlayerController.networkUrl(
@@ -46,6 +67,8 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    videoPlayerController?.pause();
     videoPlayerController?.dispose();
     chewieController?.dispose();
     super.dispose();
@@ -65,7 +88,6 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// VIDEO AREA
           AspectRatio(
             aspectRatio: 16 / 9,
             child: isPlaying
@@ -73,7 +95,6 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
                 : Stack(
                     alignment: Alignment.center,
                     children: [
-                      /// THUMBNAIL
                       Image.network(
                         widget.video.thumb!,
                         width: double.infinity,
@@ -87,7 +108,6 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
                         },
                       ),
 
-                      /// PLAY BUTTON
                       IconButton(
                         iconSize: 70,
                         icon: const Icon(
@@ -100,7 +120,6 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
                   ),
           ),
 
-          /// TITLE
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
@@ -129,13 +148,11 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
             ),
           ),
 
-          /// DESCRIPTION
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(widget.video.description ?? ""),
           ),
 
-          /// FOOTER
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
@@ -220,13 +237,13 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// VIDEO PLAYER
+          
           AspectRatio(
             aspectRatio: 16 / 9,
             child: Chewie(controller: chewieController!),
           ),
 
-          /// TITLE
+          
           Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
@@ -235,13 +252,13 @@ class _VideoPlayerCardState extends State<VideoPlayerCard> {
             ),
           ),
 
-          /// DESCRIPTION
+          
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(widget.video.description ?? ""),
           ),
 
-          /// FOOTER
+          
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(

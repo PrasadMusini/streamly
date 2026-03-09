@@ -21,10 +21,8 @@ Future<void> main() async {
   final fcmToken = await FirebaseMessaging.instance.getToken();
   print("fcmToken: $fcmToken");
 
-  // Initialize GoRouterConfig once and reuse it
   final goRouterConfig = GoRouterConfig(initialRoute: Routes.screenHome.path);
 
-  /// Dependencies
   final dio = Dio();
 
   final remoteDataSource = VideoRemoteDataSource(dio);
@@ -47,8 +45,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final themeMode = ref.watch(themeProvider);
-
     return MaterialApp.router(
       builder: (context, child) {
         final originalTextScaleFactor = MediaQuery.of(

@@ -11,7 +11,6 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
 
-  /// Android notification channel
   final AndroidNotificationChannel _channel = const AndroidNotificationChannel(
     'high_importance_channel',
     'High Importance Notifications',
@@ -19,7 +18,6 @@ class NotificationService {
     importance: Importance.high,
   );
 
-  /// Initialize everything
   Future<void> init() async {
     await _requestPermission();
     await _initLocalNotifications();
@@ -27,7 +25,6 @@ class NotificationService {
     await _getFCMToken();
   }
 
-  /// Request notification permission
   Future<void> _requestPermission() async {
     NotificationSettings settings = await _messaging.requestPermission(
       alert: true,
@@ -38,7 +35,6 @@ class NotificationService {
     print("Notification permission: ${settings.authorizationStatus}");
   }
 
-  /// Initialize local notifications
   Future<void> _initLocalNotifications() async {
     const AndroidInitializationSettings androidSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -49,7 +45,6 @@ class NotificationService {
 
     await _localNotifications.initialize(settings: initSettings);
 
-    /// Create channel for Android
     await _localNotifications
         .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin
@@ -57,9 +52,7 @@ class NotificationService {
         ?.createNotificationChannel(_channel);
   }
 
-  /// Listen for FCM messages
   Future<void> _setupFCMListeners() async {
-    /// Foreground messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print("Foreground message: ${message.notification?.title}");
 
@@ -71,19 +64,16 @@ class NotificationService {
       }
     });
 
-    /// When notification clicked
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print("Notification clicked");
     });
   }
 
-  /// Get FCM token
   Future<void> _getFCMToken() async {
     String? token = await _messaging.getToken();
     print("FCM TOKEN: $token");
   }
 
-  /// Show local notification
   Future<void> _showLocalNotification({
     required String title,
     required String body,
@@ -108,7 +98,6 @@ class NotificationService {
     );
   }
 
-  /// Push a sample notification manually
   Future<void> showSampleNotification() async {
     await _showLocalNotification(
       title: "Test Notification",

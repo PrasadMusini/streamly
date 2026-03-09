@@ -55,12 +55,6 @@ class GoRouterConfig {
             ),
           ],
         ),
-        /* GoRoute(
-          path: Routes.screenOnboarding.path,
-          name: Routes.screenOnboarding.name,
-          pageBuilder: (context, state) =>
-              CupertinoPage(key: state.pageKey, child: OnboardingScreen()),
-        ), */
       ],
     );
   }
