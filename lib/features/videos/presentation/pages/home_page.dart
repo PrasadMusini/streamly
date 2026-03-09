@@ -20,7 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Videos")),
+      appBar: AppBar(
+        title: const Text(
+          "Streamly",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        // centerTitle: true,
+      ),
 
       body: BlocBuilder<VideoBloc, VideoState>(
         builder: (context, state) {
