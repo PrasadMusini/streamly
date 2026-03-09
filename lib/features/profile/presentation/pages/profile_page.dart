@@ -22,7 +22,13 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Profile"), centerTitle: true),
+      appBar: AppBar(
+        title: const Text(
+          "Profile",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        // centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -4,22 +4,72 @@ Streamly is a modern, high-performance Flutter application designed for seamless
 
 ## 🏗 Project Architecture
 
-Streamly follows a **Feature-Driven Clean Architecture** to ensure modularity, scalability, and maintainability. The codebase is organized by distinct features, making it highly decoupled and easy to navigate:
+Streamly follows a **Feature-Driven Clean Architecture** to ensure modularity, scalability, and maintainability. The codebase is organized by distinct features, making it highly decoupled and easy to navigate
 
-```text
-lib/
- └── features/
-      ├── profile/
-      │    ├── data/           # Repositories, API calls, Models
-      │    ├── domain/         # Entities, Use Cases
-      │    └── presentation/   # Pages, Widgets, BLoCs
-      └── videos/
-           ├── data/
-           ├── domain/
-           └── presentation/
-                ├── pages/     # e.g., home_page.dart
-                └── widgets/   # e.g., video_player_card.dart
-```
+## Clean Architecture
+
+lib
+│   firebase_options.dart
+│   main.dart
+│
+├── core
+│   ├── constants
+│   │       api_constants.dart
+│   │
+│   ├── error
+│   │       exceptions.dart
+│   │       failures.dart
+│   │
+│   ├── network
+│   │       api_service.dart
+│   │
+│   ├── styles
+│   │       colors.dart
+│   │
+│   └── utils
+│           date_formatter.dart
+│
+├── features
+│   ├── profile
+│   │   └── presentation
+│   │       └── pages
+│   │               profile_page.dart
+│   │
+│   └── videos
+│       ├── data
+│       │   ├── datasource
+│       │   │       video_remote_datasource.dart
+│       │   ├── models
+│       │   │       video_model.dart
+│       │   └── repositories
+│       │           video_repository_impl.dart
+│       │
+│       ├── domain
+│       │   ├── entities
+│       │   │       video.dart
+│       │   ├── repositories
+│       │   │       video_repository.dart
+│       │   └── usecases
+│       │           get_videos.dart
+│       │
+│       └── presentation
+│           ├── bloc
+│           │       video_bloc.dart
+│           │       video_event.dart
+│           │       video_state.dart
+│           ├── pages
+│           │       home_page.dart
+│           └── widgets
+│                   video_player_card.dart
+│
+├── navigation
+│       app_router.dart
+│       main_screen.dart
+│       page_notfound.dart
+│       route_config.dart
+│
+└── notifications
+        notification_service.dart
 
 This layer-by-layer separation of concerns allows the project to scale easily while keeping the UI, business logic, and data layers decoupled.
 
@@ -37,7 +87,7 @@ This layer-by-layer separation of concerns allows the project to scale easily wh
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone <repo url>
    ```
 2. **Navigate into the project directory:**
    ```bash
@@ -53,6 +103,5 @@ This layer-by-layer separation of concerns allows the project to scale easily wh
    flutter run
    ```
 
-## 👨‍💻 Developer
-
-Developed with ❤️ by **Prasad Musini**.
+## Developer
+Developed by **Prasad Musini**.
