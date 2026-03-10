@@ -13,4 +13,8 @@ class Routes {
     path: '/screenProfile',
     name: 'screenProfile',
   );
+  static const AppRouter screenLogin = AppRouter(
+    path: '/screenLogin',
+    name: 'screenLogin',
+  );
 }

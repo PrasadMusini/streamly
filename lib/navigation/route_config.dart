@@ -5,6 +5,7 @@ import 'package:streamly_cresolinfoserv/features/videos/presentation/pages/home_
 import 'package:streamly_cresolinfoserv/navigation/app_router.dart';
 import 'package:streamly_cresolinfoserv/navigation/main_screen.dart';
 import 'package:streamly_cresolinfoserv/navigation/page_notfound.dart';
+import 'package:streamly_cresolinfoserv/features/auth/data/presentation/auth_screen.dart';
 
 class GoRouterConfig {
   final String? initialRoute;
@@ -54,6 +55,11 @@ class GoRouterConfig {
               ],
             ),
           ],
+        ),
+        GoRoute(
+          path: Routes.screenLogin.path,
+          name: Routes.screenLogin.name,
+          builder: (context, state) => const AuthScreen(),
         ),
       ],
     );

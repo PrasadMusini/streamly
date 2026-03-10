@@ -11,6 +11,8 @@ import 'package:streamly_cresolinfoserv/navigation/app_router.dart';
 import 'package:streamly_cresolinfoserv/navigation/route_config.dart';
 import 'package:streamly_cresolinfoserv/notifications/notification_service.dart';
 
+import 'package:streamly_cresolinfoserv/features/auth/data/repositories/auth_repository.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -18,10 +20,15 @@ Future<void> main() async {
 
   await NotificationService.instance.init();
 
-  final fcmToken = await FirebaseMessaging.instance.getToken();
-  print("fcmToken: $fcmToken");
+  // final fcmToken = await FirebaseMessaging.instance.getToken();
+  // print("fcmToken: $fcmToken");
 
-  final goRouterConfig = GoRouterConfig(initialRoute: Routes.screenHome.path);
+  final bool loggedIn = await AuthRepository.isLoggedIn();
+  final String initialRoute = loggedIn
+      ? Routes.screenHome.path
+      : Routes.screenLogin.path;
+
+  final goRouterConfig = GoRouterConfig(initialRoute: initialRoute);
 
   final dio = Dio();
 
