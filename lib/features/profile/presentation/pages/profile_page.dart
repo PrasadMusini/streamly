@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:streamly_cresolinfoserv/core/styles/colors.dart';
 
-class ProfileScreen extends StatelessWidget {
+/* class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   Widget buildOption({
@@ -81,12 +81,8 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
-}
+} */
 
-
-
-
-/* 
 //MARK: New Ui
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -148,8 +144,8 @@ class ProfileScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.primary,
-                    AppColors.primary.withOpacity(.7),
+                    AppColors.redColor,
+                    AppColors.redColor.withOpacity(.7),
                   ],
                 ),
                 borderRadius: const BorderRadius.only(
@@ -174,7 +170,7 @@ class ProfileScreen extends StatelessWidget {
                       radius: 45,
                       backgroundColor: Colors.white,
                       child: Text(
-                        "P",
+                        "x",
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -267,4 +263,3 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
- */
