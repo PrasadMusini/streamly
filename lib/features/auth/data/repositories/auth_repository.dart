@@ -23,9 +23,13 @@ class AuthRepository {
         'isActive': isActive,
       };
 
-      print('reqbody: $reqbody');
+      final apiUrl =
+          'https://filtrable-macy-unpulverized.ngrok-free.dev/api/users/login';
+      print('login: $apiUrl');
+      print('login: $reqbody');
+
       final response = await _dio.post(
-        'http://localhost:4000/api/users/login',
+        apiUrl,
         // '/api/users/login',
         data: reqbody,
       );
